@@ -1,23 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+// import "./App.css";
+import { Route, Routes, Navigate } from "react-router-dom";
+import { useState } from "react";
+import Login from "./pages/Login";
+import Home from "./pages/Home";
 
 function App() {
+  const [loggedIn, setloggedIn] = useState(true);
+  function callbackFunction(childData) {
+    setloggedIn(childData);
+  }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Routes>
+        <Route path="/" element={<Navigate replace to={"/login"} />} />
+        <Route
+          path="/login"
+          element={
+            loggedIn ? (
+              <Navigate replace to={"/home"} />
+            ) : (
+              <Login parentCallback={callbackFunction} />
+            )
+          }
+        />
+        <Route
+          path="/home"
+          element={loggedIn ? <Home /> : <Navigate replace to={"/login"} />}
+        />
+      </Routes>
     </div>
   );
 }
