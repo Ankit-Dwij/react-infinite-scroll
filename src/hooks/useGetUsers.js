@@ -14,21 +14,23 @@ export default function useGetUsers(query, pageNumber) {
   useEffect(() => {
     setLoading(true);
     setError(false);
-    axios
-      .get(
-        `https://randomuser.me/api/?page=${pageNumber}&results=10&seed=abc`,
-        {}
-      )
-      .then((res) => {
-        setUsers((prevUsers) => {
-          return [...new Set([...prevUsers, ...res.data.results])];
+    setTimeout(() => {
+      axios
+        .get(
+          `https://randomuser.me/api/?page=${pageNumber}&results=10&seed=abc`,
+          {}
+        )
+        .then((res) => {
+          setUsers((prevUsers) => {
+            return [...new Set([...prevUsers, ...res.data.results])];
+          });
+          setHasMore(res.data.results.length > 0);
+          setLoading(false);
+        })
+        .catch((error) => {
+          setError(true);
         });
-        setHasMore(res.data.results.length > 0);
-        setLoading(false);
-      })
-      .catch((error) => {
-        setError(true);
-      });
+    }, 1000);
   }, [pageNumber]);
 
   return { loading, error, users, hasMore };
