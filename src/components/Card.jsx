@@ -1,5 +1,33 @@
 import React from "react";
 
+const SkeletonCard = () => {
+  return (
+    <>
+      <div className="card">
+        <div className="card-content">
+          <div className="media">
+            <div className="media-left">
+              <figure className="image is-48x48">
+                <img
+                  className="skeleton"
+                  src="https://www.sunsetlearning.com/wp-content/uploads/2019/09/User-Icon-Grey.png"
+                  style={{ borderRadius: "50%", width: "48px", height: "48px" }}
+                  alt="Placeholder"
+                />
+              </figure>
+            </div>
+            <div className="media-content">
+              <div className="skeleton skeleton-text"></div>
+              <div className="skeleton skeleton-text"></div>
+              <div className="skeleton skeleton-text"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
+
 const Card = ({ user, innerRef }) => {
   return (
     <>
@@ -26,4 +54,4 @@ const Card = ({ user, innerRef }) => {
   );
 };
 
-export default Card;
+export { Card, SkeletonCard };

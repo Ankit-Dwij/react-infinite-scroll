@@ -4,7 +4,7 @@ import validate from "../LoginFormValidationRules";
 import useForm from "../hooks/useForm";
 import { useAuthContext } from "../hooks/useAuthContext";
 
-const Login = (props) => {
+const Login = () => {
   const [loggedIn, setLoggedIn] = useState(false);
   const { values, errors, handleChange, handleSubmit } = useForm(
     login,
@@ -21,7 +21,6 @@ const Login = (props) => {
       localStorage.setItem("user", JSON.stringify({ user: values.email }));
       dispatch({ type: "LOGIN", payload: { user: { email: values.email } } });
       setLoggedIn(true);
-      props.parentCallback(true);
       return navigate("/home", {});
     } else {
       alert("Wrong username or password");
