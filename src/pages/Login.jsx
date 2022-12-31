@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import validate from "../LoginFormValidationRules";
 import useForm from "../hooks/useForm";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 const Login = (props) => {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -9,6 +10,7 @@ const Login = (props) => {
     login,
     validate
   );
+  const { dispatch } = useAuthContext();
 
   function login() {
     //call the login api here
@@ -16,6 +18,8 @@ const Login = (props) => {
       values.email === "reactuser@gmail.com" &&
       values.password === "Abcd123@gmail.com"
     ) {
+      localStorage.setItem("user", JSON.stringify({ user: values.email }));
+      dispatch({ type: "LOGIN", payload: { user: { email: values.email } } });
       setLoggedIn(true);
       props.parentCallback(true);
       return navigate("/home", {});

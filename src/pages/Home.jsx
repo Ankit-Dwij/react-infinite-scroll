@@ -79,7 +79,7 @@ const Home = () => {
           }
         })}
         {loading && (
-          <div style={{ overflowY: "auto", height: "100%" }}>
+          <>
             <SkeletonCard />
             <SkeletonCard />
             <SkeletonCard />
@@ -87,7 +87,8 @@ const Home = () => {
             <SkeletonCard />
             <SkeletonCard />
             <SkeletonCard />
-          </div>
+            <SkeletonCard />
+          </>
         )}
       </div>
       {error && <div>Error</div>}
