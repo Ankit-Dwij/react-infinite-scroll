@@ -1,6 +1,6 @@
 import React from "react";
 
-const Card = ({ name, email, image, innerRef }) => {
+const Card = ({ user, innerRef }) => {
   return (
     <>
       <div ref={innerRef} className="card" style={{ display: "flex" }}>
@@ -10,14 +10,14 @@ const Card = ({ name, email, image, innerRef }) => {
               <figure className="image is-48x48">
                 <img
                   style={{ borderRadius: "50%" }}
-                  src={image}
+                  src={user.picture.medium}
                   alt="Placeholder"
                 />
               </figure>
             </div>
             <div className="media-content">
-              <p className="title is-4">{name}</p>
-              <p className="subtitle is-6">{email}</p>
+              <p className="title is-4">{user.name.first}</p>
+              <p className="subtitle is-6">{user.email}</p>
             </div>
           </div>
         </div>
