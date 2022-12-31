@@ -4,18 +4,17 @@ import validate from "../LoginFormValidationRules";
 import useForm from "../hooks/useForm";
 
 const Login = (props) => {
-  const navigate = useNavigate();
+  const [loggedIn, setLoggedIn] = useState(false);
   const { values, errors, handleChange, handleSubmit } = useForm(
     login,
     validate
   );
-  const [loggedIn, setLoggedIn] = useState(false);
 
   function login() {
     //call the login api here
     if (
       values.email === "reactuser@gmail.com" &&
-      values.password === "Abcd123@gh"
+      values.password === "Abcd123@gmail.com"
     ) {
       setLoggedIn(true);
       props.parentCallback(true);
@@ -25,6 +24,7 @@ const Login = (props) => {
     }
   }
 
+  const navigate = useNavigate();
   return (
     <div className="section is-fullheight">
       {loggedIn && navigate("/home", {})}
