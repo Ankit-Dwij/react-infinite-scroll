@@ -15,9 +15,7 @@ const Home = () => {
     observer.current = new IntersectionObserver(
       (entries) => {
         if (entries[0].isIntersecting && hasMore) {
-          setTimeout(() => {
-            setPageNumber((prev) => prev + 1);
-          }, 1000);
+          setPageNumber((prev) => prev + 1);
         }
       },
       [loading, hasMore]

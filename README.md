@@ -1,4 +1,4 @@
-# react-infinite-scroll-component
+# react-infinite-scroll
 
 A react app that implements `infinite scrolling` with added feature like skeleton loading animation , form validations, custom hooks, authentication etc.
 
